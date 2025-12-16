@@ -21,12 +21,15 @@ const Home: React.FC = () => {
             <p className="text-gray-600 mb-8 text-center">Please select your registration type</p>
 
             <div className="space-y-4">
+              {/* Customer */}
               <Link
                 to="/register"
                 className="block w-full bg-white text-blue-600 py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors text-center"
               >
                 Register as Patient
               </Link>
+
+              {/* Doctor */}
               <Link
                 to="/doctor/register"
                 className="block w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg text-center"
@@ -34,6 +37,7 @@ const Home: React.FC = () => {
                 Register as Doctor
               </Link>
 
+              {/* Vendor */}
               <Link
                 to="/vendor/register"
                 className="block w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg text-center"
@@ -41,6 +45,7 @@ const Home: React.FC = () => {
                 Register as Vendor
               </Link>
 
+              {/* Nurse */}
               <Link
                 to="/nurse/register"
                 className="block w-full bg-white text-blue-600 py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors text-center"
