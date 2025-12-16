@@ -20,13 +20,13 @@ const Home: React.FC = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">Welcome</h2>
             <p className="text-gray-600 mb-8 text-center">Please select your registration type</p>
 
-            <Link
-              to="/register"
-              className="block w-full bg-white text-blue-600 py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors text-center"
-            >
-              Register as Patient
-            </Link>
             <div className="space-y-4">
+              <Link
+                to="/register"
+                className="block w-full bg-white text-blue-600 py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors text-center"
+              >
+                Register as Patient
+              </Link>
               <Link
                 to="/doctor/register"
                 className="block w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg text-center"
