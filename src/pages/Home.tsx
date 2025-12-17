@@ -21,14 +21,6 @@ const Home: React.FC = () => {
             <p className="text-gray-600 mb-8 text-center">Please select your registration type</p>
 
             <div className="space-y-4">
-              {/* Customer */}
-              <Link
-                to="/register"
-                className="block w-full bg-white text-blue-600 py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors text-center"
-              >
-                Register as Patient
-              </Link>
-
               {/* Doctor */}
               <Link
                 to="/doctor/register"
