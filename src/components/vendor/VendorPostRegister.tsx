@@ -103,9 +103,9 @@ const VendorPostRegister: React.FC<VendorPostRegisterProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-pink-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-lg p-8">
+        <div className="bg-white rounded-3xl shadow-xl p-10">
           <h2 className="text-3xl font-bold text-gray-800 mb-2">Complete Your Profile</h2>
           <p className="text-gray-600 mb-8">Please provide additional information</p>
 
@@ -296,7 +296,7 @@ const VendorPostRegister: React.FC<VendorPostRegisterProps> = ({
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+              className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Complete Registration
             </button>
