@@ -51,9 +51,6 @@ export const useRegistration = <T extends RegistrationData>(role: UserRole): Use
       setToken(response.data.token);
       setRegisterData(data);
 
-      // Send OTP email (backend requires explicit call)
-      await authService.sendEmailVerification(response.data.token);
-
       // Move to OTP step
       setCurrentStep("otp");
 
