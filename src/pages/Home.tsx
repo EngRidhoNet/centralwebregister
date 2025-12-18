@@ -8,8 +8,7 @@ const Home: React.FC = () => {
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-blue-800 items-center justify-center p-12">
         <div className="text-white text-center">
           <h1 className="text-6xl font-bold mb-4">MediCare</h1>
-          <p className="text-2xl text-blue-100 mb-8">Healthcare service wherever you are</p>
-          <p className="text-lg text-blue-200">Join our network of healthcare professionals</p>
+          <p className="text-2xl text-blue-100 mb-8">Healthcare. Anytime. Anywhere.</p>
         </div>
       </div>
 
@@ -40,7 +39,7 @@ const Home: React.FC = () => {
               {/* Nurse */}
               <Link
                 to="/nurse/register"
-                className="block w-full bg-white text-blue-600 py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors text-center"
+                className="block w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg text-center"
               >
                 Register as Nurse
               </Link>
