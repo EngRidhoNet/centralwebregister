@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import type { VendorRegisterForm as VendorRegisterFormType } from '../../types';
-import hospitalIcon from '../../assets/img/icon-hospital.svg';
-import { REGISTER_URL } from '../../constants/constant';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { VendorRegisterForm as VendorRegisterFormType } from "../../types";
+import hospitalIcon from "../../assets/img/icon-hospital.svg";
+import { REGISTER_URL } from "../../constants/constant";
 
 interface VendorRegisterFormProps {
   onSubmit: (data: VendorRegisterFormType) => void;
@@ -11,26 +11,36 @@ interface VendorRegisterFormProps {
 const VendorRegisterForm: React.FC<VendorRegisterFormProps> = ({ onSubmit }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<VendorRegisterFormType>({
-    vendorName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    agreementAccepted: false
+    vendorName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    agreementAccepted: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    if (name === "phone") {
+      const sanitizedValue = value.replace(/[^0-9]/g, "");
+
+      setFormData((prev) => ({
+        ...prev,
+        phone: sanitizedValue,
+      }));
+      return;
+    }
+
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
     onSubmit(formData);
@@ -57,17 +67,13 @@ const VendorRegisterForm: React.FC<VendorRegisterFormProps> = ({ onSubmit }) => 
             {/* Hospital Illustration */}
             <div className="mb-8">
               <div className="w-[300px] h-[300px] bg-gradient-to-br from-gray-50 to-white rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden">
-                <img 
-                  src={hospitalIcon} 
-                  alt="Hospital" 
-                  className="w-full h-full object-contain scale-90"
-                />
+                <img src={hospitalIcon} alt="Hospital" className="w-full h-full object-contain scale-90" />
               </div>
             </div>
 
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Vendor</h2>
-            
-            <button 
+
+            <button
               onClick={handleSelectRole}
               type="button"
               className="text-blue-600 flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-base"
@@ -84,11 +90,9 @@ const VendorRegisterForm: React.FC<VendorRegisterFormProps> = ({ onSubmit }) => 
             <div className="w-full max-w-[450px] mx-auto">
               <div className="mb-6">
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">Register</h2>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Please complete the following data
-                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">Please complete the following data</p>
               </div>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 mb-1.5">
@@ -178,8 +182,10 @@ const VendorRegisterForm: React.FC<VendorRegisterFormProps> = ({ onSubmit }) => 
                     className="mt-0.5 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
                   />
                   <label htmlFor="agreementAccepted" className="text-xs text-gray-700 leading-relaxed">
-                    By ticking, you're confirm that you have read, understood and agree to Medicare{' '}
-                    <a href="/terms" className="text-blue-600 hover:underline font-medium">Terms of Service</a>
+                    By ticking, you're confirm that you have read, understood and agree to Medicare{" "}
+                    <a href="/terms" className="text-blue-600 hover:underline font-medium">
+                      Terms of Service
+                    </a>
                   </label>
                 </div>
 

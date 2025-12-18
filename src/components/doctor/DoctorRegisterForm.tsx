@@ -22,6 +22,16 @@ const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
+    if (name === "phone") {
+      const sanitizedValue = value.replace(/[^0-9]/g, "");
+
+      setFormData((prev) => ({
+        ...prev,
+        phone: sanitizedValue,
+      }));
+      return;
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,

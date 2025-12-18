@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import type { NurseRegisterForm as NurseRegisterFormType } from '../../types';
-import nurseIcon from '../../assets/img/icon-nurse.svg';
-import { REGISTER_URL } from '../../constants/constant';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { NurseRegisterForm as NurseRegisterFormType } from "../../types";
+import nurseIcon from "../../assets/img/icon-nurse.svg";
+import { REGISTER_URL } from "../../constants/constant";
 
 interface NurseRegisterFormProps {
   onSubmit: (data: NurseRegisterFormType) => void;
@@ -11,28 +11,39 @@ interface NurseRegisterFormProps {
 const NurseRegisterForm: React.FC<NurseRegisterFormProps> = ({ onSubmit }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<NurseRegisterFormType>({
-    fullName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    agreementAccepted: false
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    agreementAccepted: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    if (name === "phone") {
+      const sanitizedValue = value.replace(/[^0-9]/g, "");
+
+      setFormData((prev) => ({
+        ...prev,
+        phone: sanitizedValue,
+      }));
+      return;
+    }
+
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
+
     onSubmit(formData);
   };
 
@@ -57,17 +68,13 @@ const NurseRegisterForm: React.FC<NurseRegisterFormProps> = ({ onSubmit }) => {
             {/* Nurse Illustration */}
             <div className="mb-8">
               <div className="w-[300px] h-[300px] bg-gradient-to-br from-pink-50 to-blue-50 rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden">
-                <img 
-                  src={nurseIcon} 
-                  alt="Nurse" 
-                  className="w-full h-full object-contain scale-90"
-                />
+                <img src={nurseIcon} alt="Nurse" className="w-full h-full object-contain scale-90" />
               </div>
             </div>
 
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Nurse</h2>
-            
-            <button 
+
+            <button
               onClick={handleSelectRole}
               type="button"
               className="text-blue-600 flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-base"
@@ -84,11 +91,9 @@ const NurseRegisterForm: React.FC<NurseRegisterFormProps> = ({ onSubmit }) => {
             <div className="w-full max-w-[450px] mx-auto">
               <div className="mb-6">
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">Register</h2>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Please complete the following data
-                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">Please complete the following data</p>
               </div>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 mb-1.5">
@@ -129,7 +134,7 @@ const NurseRegisterForm: React.FC<NurseRegisterFormProps> = ({ onSubmit }) => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="eg: +60 10-1234568"
+                    placeholder="eg: 060101234568 (do not use + or -)"
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none text-sm"
                   />
@@ -178,8 +183,10 @@ const NurseRegisterForm: React.FC<NurseRegisterFormProps> = ({ onSubmit }) => {
                     className="mt-0.5 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
                   />
                   <label htmlFor="agreementAccepted" className="text-xs text-gray-700 leading-relaxed">
-                    By ticking, you're confirm that you have read, understood and agree to Medicare{' '}
-                    <a href="/terms" className="text-blue-600 hover:underline font-medium">Terms of Service</a>
+                    By ticking, you're confirm that you have read, understood and agree to Medicare{" "}
+                    <a href="/terms" className="text-blue-600 hover:underline font-medium">
+                      Terms of Service
+                    </a>
                   </label>
                 </div>
 
