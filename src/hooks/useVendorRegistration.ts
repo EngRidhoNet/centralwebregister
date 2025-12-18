@@ -1,5 +1,5 @@
 import { useRegistration } from './useRegistration';
-import type { VendorRegisterForm, OTPVerification } from '../types';
+import type { VendorRegisterForm } from '../types';
 
 interface VendorRegistrationData {
   email: string;
