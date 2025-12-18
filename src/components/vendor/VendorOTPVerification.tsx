@@ -13,7 +13,6 @@ interface VendorOTPVerificationProps {
 const VendorOTPVerification: React.FC<VendorOTPVerificationProps> = ({
   onSubmit,
   onResend,
-  email
 }) => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);

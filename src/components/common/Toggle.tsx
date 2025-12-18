@@ -12,7 +12,6 @@ interface ToggleProps {
 const Toggle: React.FC<ToggleProps> = ({
   label,
   options,
-  name,
   value,
   onChange,
   required = false

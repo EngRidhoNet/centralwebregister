@@ -1,5 +1,5 @@
 import { useRegistration } from './useRegistration';
-import type { NurseRegisterForm, OTPVerification } from '../types';
+import type { NurseRegisterForm } from '../types';
 
 interface NurseRegistrationData {
   email: string;

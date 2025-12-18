@@ -13,7 +13,6 @@ interface NurseOTPVerificationProps {
 const NurseOTPVerification: React.FC<NurseOTPVerificationProps> = ({
   onSubmit,
   onResend,
-  email
 }) => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
