@@ -15,3 +15,6 @@ export const NURSE_REGISTER_URL = "/register/nurse";
 export const DOCTOR_REGISTRATION_SUCCESS_URL = "http://103.224.93.92:8001/login";
 export const VENDOR_REGISTRATION_SUCCESS_URL = "https://dev.medicarebackend.com/vendor/login";
 export const NURSE_REGISTRATION_SUCCESS_URL = "https://dev.medicarebackend.com/nurse/login";
+
+// Terms and Conditions URL
+export const TERMS_AND_CONDITIONS_URL = "/terms";
