@@ -8,8 +8,7 @@ const Home: React.FC = () => {
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-blue-800 items-center justify-center p-12">
         <div className="text-white text-center">
           <h1 className="text-6xl font-bold mb-4">MediCare</h1>
-          <p className="text-2xl text-blue-100 mb-8">Healthcare service wherever you are</p>
-          <p className="text-lg text-blue-200">Join our network of healthcare professionals</p>
+          <p className="text-2xl text-blue-100 mb-8">Healthcare. Anytime. Anywhere.</p>
         </div>
       </div>
 
