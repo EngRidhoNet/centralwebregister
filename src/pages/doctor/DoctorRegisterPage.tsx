@@ -5,6 +5,7 @@ import DoctorOTPVerification from "../../components/doctor/DoctorOTPVerification
 import { useDoctorRegistration } from "../../hooks/useDoctorRegistration";
 import { REGISTRATION_SUCCESS_URL } from "../../constants/constant";
 import { useToast } from "../../components/common/ToastContainer";
+import { getErrorMessage } from "../../utils/errorHandler";
 
 const DoctorRegisterPage: React.FC = () => {
   const navigate = useNavigate();
@@ -33,10 +34,11 @@ const DoctorRegisterPage: React.FC = () => {
     }
   }, [currentStep, navigate]);
 
-  // Show error toast
+  // Show error toast with user-friendly message
   useEffect(() => {
     if (error) {
-      showError(error);
+      const friendlyMessage = getErrorMessage(error);
+      showError(friendlyMessage);
       clearError();
     }
   }, [error, clearError, showError]);
@@ -56,21 +58,41 @@ const DoctorRegisterPage: React.FC = () => {
       )}
 
       {/* Register Form */}
-      {currentStep === "register" && <DoctorRegisterForm onSubmit={handleRegisterSubmit} />}
+      {currentStep === "register" && (
+        <DoctorRegisterForm onSubmit={handleRegisterSubmit} />
+      )}
 
       {/* OTP Verification */}
-      {currentStep === "otp" && registerData && <DoctorOTPVerification onSubmit={handleOTPSubmit} onResend={handleOTPResend} email={registerData.email} />}
+      {currentStep === "otp" && registerData && (
+        <DoctorOTPVerification 
+          onSubmit={handleOTPSubmit} 
+          onResend={handleOTPResend} 
+          email={registerData.email} 
+        />
+      )}
 
       {/* Success Message */}
       {currentStep === "success" && (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="text-center">
             <div className="mb-4">
-              <svg className="w-20 h-20 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg 
+                className="w-20 h-20 text-green-500 mx-auto" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" 
+                />
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Verification Successful!</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              Verification Successful!
+            </h2>
             <p className="text-gray-600">Redirecting...</p>
           </div>
         </div>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-
 import type { DoctorRegisterForm as DoctorRegisterFormType } from "../../types";
 import doctorIcon from "../../assets/img/icon-doctor.svg";
-import { REGISTER_URL } from "../../constants/constant";
+import { DOCTOR_TERMS_AND_CONDITIONS_URL, REGISTER_URL } from "../../constants/constant";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../common/ToastContainer";
 
 interface DoctorRegisterFormProps {
   onSubmit: (data: DoctorRegisterFormType) => void;
@@ -11,6 +11,7 @@ interface DoctorRegisterFormProps {
 
 const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => {
   const navigate = useNavigate();
+  const { showError, showWarning } = useToast();
   const [formData, setFormData] = useState<DoctorRegisterFormType>({
     fullName: "",
     email: "",
@@ -40,10 +41,23 @@ const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validation
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      showError("Passwords do not match");
       return;
     }
+
+    if (formData.password.length < 8) {
+      showError("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (!formData.agreementAccepted) {
+      showWarning("Please accept the Terms of Service");
+      return;
+    }
+
     onSubmit(formData);
   };
 
@@ -65,7 +79,7 @@ const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => 
               </h1>
             </div>
 
-            {/* Nurse Illustration */}
+            {/* Doctor Illustration */}
             <div className="mb-8">
               <div className="w-[300px] h-[300px] bg-gradient-to-br from-pink-50 to-blue-50 rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden">
                 <img src={doctorIcon} alt="Doctor" className="w-full h-full object-contain scale-90" />
@@ -183,7 +197,7 @@ const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => 
                   />
                   <label htmlFor="agreementAccepted" className="text-xs text-gray-700 leading-relaxed">
                     By ticking, you're confirm that you have read, understood and agree to Medicare{" "}
-                    <a href="/terms" className="text-blue-600 hover:underline font-medium">
+                    <a href={DOCTOR_TERMS_AND_CONDITIONS_URL} className="text-blue-600 hover:underline font-medium">
                       Terms of Service
                     </a>
                   </label>

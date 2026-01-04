@@ -5,6 +5,7 @@ import VendorOTPVerification from '../../components/vendor/VendorOTPVerification
 import { useVendorRegistration } from '../../hooks/useVendorRegistration';
 import { REGISTRATION_SUCCESS_URL } from '../../constants/constant';
 import { useToast } from '../../components/common/ToastContainer';
+import { getErrorMessage } from '../../utils/errorHandler';
 
 const VendorRegisterPage: React.FC = () => {
   const navigate = useNavigate();
@@ -33,10 +34,11 @@ const VendorRegisterPage: React.FC = () => {
     }
   }, [currentStep, navigate]);
 
-  // Show error toast
+  // Show error toast with user-friendly message
   useEffect(() => {
     if (error) {
-      showError(error);
+      const friendlyMessage = getErrorMessage(error);
+      showError(friendlyMessage);
       clearError();
     }
   }, [error, clearError, showError]);
