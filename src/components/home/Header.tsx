@@ -27,9 +27,9 @@ export const Header: React.FC = () => {
           </a>
         </nav>
 
-        <Button onClick={() => navigate("/register")} icon>
+        {/* <Button onClick={() => navigate("/register")} icon>
           Go To Portal
-        </Button>
+        </Button> */}
       </div>
     </header>
   );
