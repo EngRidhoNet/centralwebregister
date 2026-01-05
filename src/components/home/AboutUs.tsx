@@ -1,5 +1,8 @@
 import React from "react";
 import { Header } from "./Header";
+import doctor1Img from "../../assets/img/doctors/doctor1.png";
+import doctor2Img from "../../assets/img/doctors/doctor2.png";
+import doctor3Img from "../../assets/img/doctors/doctor3.png";
 
 // --- Types ---
 interface TeamMember {
@@ -40,19 +43,19 @@ export const AboutUsPage: React.FC = () => {
 
   const team: TeamMember[] = [
     {
-      name: "Dr. Sarah Johnson",
+      name: "Dr. Pablo Ijoel",
       role: "Chief Medical Officer",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400&h=400",
+      image: doctor1Img,
     },
     {
-      name: "Dr. Mark Williams",
+      name: "Dr. Alexander Abdurrozzaaq",
       role: "Senior Neurologist",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400&h=400",
+      image: doctor2Img,
     },
     {
-      name: "Dr. Emily Chen",
+      name: "Dr. Onny Dmitriyevich",
       role: "Head of Pediatrics",
-      image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=400&h=400",
+      image: doctor3Img,
     },
   ];
 

@@ -121,7 +121,6 @@ export const ContactUsPage: React.FC = () => {
                         {line}
                       </p>
                     ))}
-                    <button className="text-purple-600 text-sm font-medium mt-1 hover:underline">{item.action}</button>
                   </div>
                 </div>
               ))}
