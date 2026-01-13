@@ -4,7 +4,7 @@ interface Testimonial {
   name: string;
   role: string;
   text: string;
-  color: string; // Gradient color for avatar & hover glow
+  color: string; // Tailwind Gradient classes
 }
 
 export const Testimonials: React.FC = () => {
@@ -13,37 +13,43 @@ export const Testimonials: React.FC = () => {
       name: "Alexander Abdurrozzaaq",
       role: "CTO of Medimedi",
       text: "The efficiency of this platform is unmatched. It has completely transformed how we manage patient records and appointments. Simply brilliant.",
-      color: "from-blue-400 to-blue-600",
+      // Variasi 1: Primary Blue Gradient
+      color: "from-[#2563EB] to-[#1E40AF]",
     },
     {
       name: "Onny Dmitriyevich",
       role: "CEO of Medimedi",
       text: "Security was our top concern, and Medicare delivered. The HIPAA compliance features give us and our patients complete peace of mind.",
-      color: "from-purple-400 to-purple-600",
+      // Variasi 2: Secondary Red Gradient
+      color: "from-[#EF4444] to-[#B91C1C]",
     },
     {
       name: "Pablo Ijoel",
       role: "CMO of Medimedi",
       text: "Finally, a healthcare solution that puts the user experience first. The interface is intuitive, clean, and incredibly responsive on mobile devices.",
-      color: "from-pink-400 to-pink-600",
+      // Variasi 3: Primary to Secondary Mix
+      color: "from-[#2563EB] to-[#EF4444]",
     },
   ];
 
   return (
     <section className="relative py-24 px-6 overflow-hidden bg-white">
       {/* --- 1. Ambient Background Effects --- */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-50/40 rounded-full blur-[100px] translate-y-1/4 translate-x-1/4 pointer-events-none" />
+      {/* Primary Blue Blob */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#2563EB]/10 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      {/* Secondary Red Blob */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#EF4444]/10 rounded-full blur-[100px] translate-y-1/4 translate-x-1/4 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* --- 2. Header Section --- */}
         <div className="text-center mb-20 max-w-3xl mx-auto">
-          <span className="inline-block py-1 px-3 rounded-full bg-purple-50 text-purple-600 text-sm font-semibold mb-4 tracking-wide uppercase">
+          <span className="inline-block py-1 px-3 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-4 tracking-wide uppercase">
             Testimonials
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             Trusted by Healthcare <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Professionals Worldwide</span>
+            {/* Gradient Text: Primary to Secondary */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#EF4444]">Professionals Worldwide</span>
           </h2>
           <p className="text-lg text-gray-500">See what our partners and users have to say about their experience with the Medicare platform.</p>
         </div>
@@ -58,20 +64,20 @@ export const Testimonials: React.FC = () => {
 
       {/* --- 4. Custom Animation Styles --- */}
       <style>{`
-                @keyframes fadeInUp {
-                    from { opacity: 0; transform: translateY(40px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                .animate-card-entry {
-                    opacity: 0; /* Start hidden */
-                    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-                }
-            `}</style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-card-entry {
+            opacity: 0; /* Start hidden */
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+      `}</style>
     </section>
   );
 };
 
-// --- Sub-component with Types ---
+// --- Sub-component ---
 interface TestimonialCardProps extends Testimonial {
   index: number;
 }
@@ -118,6 +124,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, role, text, col
         </div>
         <div>
           <div className="font-bold text-gray-900">{name}</div>
+          {/* Role text gradient */}
           <div className={`text-sm font-medium bg-gradient-to-r ${color} bg-clip-text text-transparent`}>{role}</div>
         </div>
       </div>

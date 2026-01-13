@@ -5,12 +5,14 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="relative bg-gray-950 text-white pt-20 pb-10 overflow-hidden">
-      {/* --- Ambient Background Glow --- */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-900/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-900/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* --- Ambient Background Glow (Updated Colors) --- */}
+      {/* Primary Blue Glow */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Secondary Red Glow */}
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#EF4444]/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* --- Decorative Top Line --- */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#2563EB]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -18,7 +20,8 @@ export const Footer: React.FC = () => {
           <div className="space-y-6">
             <div className="text-3xl font-bold tracking-tight">
               <span className="text-white">Medi</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Care</span>
+              {/* Gradient Text: Primary to Secondary */}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#EF4444]">Care</span>
             </div>
 
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
@@ -26,7 +29,8 @@ export const Footer: React.FC = () => {
             </p>
 
             <div className="flex items-start space-x-3 text-gray-400 text-sm">
-              <svg className="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {/* Icon using Primary Color */}
+              <svg className="w-5 h-5 text-[#2563EB] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -49,7 +53,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-4">
               {["About Us", "Careers", "Privacy Policy", "Terms of Service"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-gray-400 hover:text-purple-400 transition-all duration-300 hover:translate-x-1 inline-block text-sm">
+                  <a href="#" className="text-gray-400 hover:text-[#2563EB] transition-all duration-300 hover:translate-x-1 inline-block text-sm">
                     {item}
                   </a>
                 </li>
@@ -63,7 +67,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-4">
               {["Teleconsultation", "Home Nursing", "Pharmacy Delivery", "Specialist Visit"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-1 inline-block text-sm">
+                  <a href="#" className="text-gray-400 hover:text-[#EF4444] transition-all duration-300 hover:translate-x-1 inline-block text-sm">
                     {item}
                   </a>
                 </li>
@@ -80,9 +84,9 @@ export const Footer: React.FC = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-gray-900 border border-gray-800 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                className="bg-gray-900 border border-gray-800 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-all text-sm"
               />
-              <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-sm">
+              <button className="bg-gradient-to-r from-[#2563EB] to-[#EF4444] text-white px-4 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-sm shadow-lg shadow-[#2563EB]/20">
                 Subscribe
               </button>
             </form>

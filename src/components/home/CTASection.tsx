@@ -6,33 +6,37 @@ export const CTASection: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden bg-indigo-50/50">
+    <section className="relative py-24 px-6 overflow-hidden bg-[#2563EB]/5">
       {/* --- 1. Ambient Background Blobs (Fluid Vibe) --- */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-200/30 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-purple-200/30 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none mix-blend-multiply" />
+      {/* Primary Blue Blob */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#2563EB]/20 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply" />
+      {/* Secondary Red Blob */}
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#EF4444]/20 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none mix-blend-multiply" />
 
       {/* --- 2. Animated Medical Pattern --- */}
       <MedicalIconsPattern />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12 bg-white/40 backdrop-blur-xl border border-white/50 p-10 md:p-16 rounded-3xl shadow-2xl shadow-blue-900/5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 bg-white/60 backdrop-blur-xl border border-white/80 p-10 md:p-16 rounded-3xl shadow-2xl shadow-[#2563EB]/10">
           {/* Text Content */}
           <div className="flex-1 max-w-2xl text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
-              Join <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Medicare</span> to provide the best healthcare
-              for others
+              Join {/* Gradient Text: Primary to Secondary */}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#EF4444]">Medicare</span> to provide the best healthcare for
+              others
             </h2>
             <p className="text-lg text-gray-600 mb-0 leading-relaxed">
               Become part of a network that prioritizes patient well-being and technological innovation.
             </p>
           </div>
 
+          {/* Button (Commented out in previous code, styled just in case) */}
           {/* <div className="flex-shrink-0">
             <button
               onClick={() => navigate("/register")}
-              className="group relative bg-gray-900 text-white px-10 py-5 rounded-full font-bold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-1 active:translate-y-0"
+              className="group relative bg-gray-900 text-white px-10 py-5 rounded-full font-bold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-[#2563EB]/20 hover:-translate-y-1 active:translate-y-0"
             >
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#2563EB] to-[#EF4444] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative flex items-center gap-3">
                 Go To Portal
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -56,21 +60,17 @@ export const CTASection: React.FC = () => {
   );
 };
 
-// --- Sub-component: Animated Pattern ---
+// --- Sub-component: Animated Pattern with Primary/Secondary Colors ---
 const MedicalIconsPattern: React.FC = () => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    {/* Setiap ikon dibungkus div dengan style animasi 'float'.
-      Duration dan Delay dibedakan agar gerakannya tidak seragam (lebih natural/fluid).
-    */}
-
-    {/* Top Right - Box */}
+    {/* Top Right - Box (Primary Blue Border) */}
     <div className="absolute top-10 right-20 opacity-20 animate-float" style={{ animationDuration: "7s" }}>
-      <div className="w-24 h-24 border-4 border-blue-400 rounded-2xl transform rotate-12" />
+      <div className="w-24 h-24 border-4 border-[#2563EB] rounded-2xl transform rotate-12" />
     </div>
 
-    {/* Top Right - Shield Icon */}
+    {/* Top Right - Shield Icon (Secondary Red) */}
     <div className="absolute top-32 right-40 w-16 h-16 opacity-20 animate-float" style={{ animationDuration: "8s", animationDelay: "1s" }}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-purple-400 w-full h-full">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#EF4444] w-full h-full">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -80,9 +80,9 @@ const MedicalIconsPattern: React.FC = () => (
       </svg>
     </div>
 
-    {/* Middle Right - Hospital Icon */}
+    {/* Middle Right - Hospital Icon (Primary Blue) */}
     <div className="absolute top-1/4 right-10 w-20 h-20 opacity-20 animate-float" style={{ animationDuration: "6s", animationDelay: "2s" }}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-blue-400 w-full h-full">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#2563EB] w-full h-full">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -92,15 +92,15 @@ const MedicalIconsPattern: React.FC = () => (
       </svg>
     </div>
 
-    {/* Center Right - Circle */}
+    {/* Center Right - Circle (Secondary Red Border) */}
     <div
-      className="absolute top-1/3 right-1/4 w-14 h-14 border-2 border-pink-400 rounded-full opacity-20 animate-float"
+      className="absolute top-1/3 right-1/4 w-14 h-14 border-2 border-[#EF4444] rounded-full opacity-20 animate-float"
       style={{ animationDuration: "9s", animationDelay: "0.5s" }}
     />
 
-    {/* Center - Doctor Case */}
+    {/* Center - Doctor Case (Primary Blue) */}
     <div className="absolute top-1/2 right-32 w-24 h-24 opacity-10 animate-float" style={{ animationDuration: "7.5s", animationDelay: "1.5s" }}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-purple-500 w-full h-full">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#2563EB] w-full h-full">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -110,15 +110,15 @@ const MedicalIconsPattern: React.FC = () => (
       </svg>
     </div>
 
-    {/* Bottom Left - Floating Square */}
+    {/* Bottom Left - Floating Square (Primary Blue Border) */}
     <div
-      className="absolute bottom-20 left-20 w-16 h-16 border-4 border-blue-400/30 rounded-2xl transform -rotate-12 animate-float"
+      className="absolute bottom-20 left-20 w-16 h-16 border-4 border-[#2563EB]/30 rounded-2xl transform -rotate-12 animate-float"
       style={{ animationDuration: "8s" }}
     />
 
-    {/* Bottom Right - Phone Icon */}
+    {/* Bottom Right - Phone Icon (Secondary Red) */}
     <div className="absolute bottom-32 right-28 w-18 h-18 opacity-20 animate-float" style={{ animationDuration: "6.5s", animationDelay: "1s" }}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-pink-400 w-full h-full">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#EF4444] w-full h-full">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"

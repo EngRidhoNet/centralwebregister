@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react"; // Pastikan install lucide-react atau ganti dengan svg icon lain
-// import { Button } from "../common/Button"; // Uncomment jika ingin pakai button custom
+import { Menu, X } from "lucide-react";
+
+// --- Import Logo ---
+// Sesuaikan jumlah '../' dengan struktur folder project Anda
+import logoImg from "../../assets/img/home/logo.png";
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -10,7 +13,6 @@ export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // --- 1. Scroll Detection Effect ---
-  // Header akan berubah style saat user scroll ke bawah
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -38,12 +40,15 @@ export const Header: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* --- Logo Section --- */}
-          <div className="flex items-center cursor-pointer group" onClick={() => navigate("/")}>
-            <span className="text-2xl font-bold tracking-tight">
-              <span className="text-gray-900 group-hover:text-purple-600 transition-colors">Medi</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Care</span>
-            </span>
+          {/* --- Logo Section (Updated) --- */}
+          <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
+            <img
+              src={logoImg}
+              alt="Medicare Logo"
+              // h-8 sampai h-12 adalah ukuran standar navbar.
+              // w-auto agar rasio gambar tidak gepeng.
+              className="h-10 w-auto object-contain"
+            />
           </div>
 
           {/* --- Desktop Navigation (Pill Style) --- */}
@@ -54,7 +59,10 @@ export const Header: React.FC = () => {
                 to={link.path}
                 className={({ isActive }) =>
                   `px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    isActive ? "bg-purple-100 text-purple-700 shadow-sm" : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    isActive
+                      ? /* Active State: Primary Blue Light Background + Primary Text */
+                        "bg-[#2563EB]/10 text-[#2563EB] shadow-sm"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   }`
                 }
               >
@@ -67,7 +75,7 @@ export const Header: React.FC = () => {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={() => {}}
-              className="px-5 py-2.5 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-purple-600 hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
+              className="px-5 py-2.5 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-[#2563EB] hover:shadow-lg hover:shadow-[#2563EB]/30 transition-all duration-300 transform hover:-translate-y-0.5"
             >
               Get Started
             </button>
@@ -96,20 +104,27 @@ export const Header: React.FC = () => {
             <NavLink
               key={link.name}
               to={link.path}
-              className={({ isActive }) => `text-lg font-medium transition-colors ${isActive ? "text-purple-600" : "text-gray-600"}`}
+              className={({ isActive }) =>
+                `text-lg font-medium transition-colors ${
+                  /* Mobile Active Text: Primary Blue */
+                  isActive ? "text-[#2563EB]" : "text-gray-600"
+                }`
+              }
             >
               {link.name}
             </NavLink>
           ))}
           <hr className="border-gray-100" />
-          {/* <div className="flex flex-col gap-3 pt-2">
+
+          {/* Mobile CTA */}
+          <div className="flex flex-col gap-3 pt-2">
             <button
-              onClick={() => navigate("/register")}
-              className="w-full py-3 text-center bg-purple-600 text-white font-bold rounded-xl shadow-lg hover:bg-purple-700"
+              onClick={() => {}}
+              className="w-full py-3 text-center bg-[#2563EB] text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 hover:shadow-[#2563EB]/40 transition-all"
             >
               Get Started
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </>

@@ -46,20 +46,23 @@ export const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-24 px-6 bg-gray-50 overflow-hidden">
-      {/* --- Ambient Background Effects --- */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-purple-100/60 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
+    <section className="relative py-24 px-6 bg-white overflow-hidden">
+      {/* --- Ambient Background Effects (Updated Colors) --- */}
+      {/* Primary Color Blob */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+      {/* Secondary Color Blob */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#EF4444]/10 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* --- Header --- */}
         <div className="text-center mb-20 max-w-3xl mx-auto animate-fade-in-up">
-          <span className="inline-block py-1 px-3 rounded-full bg-white border border-purple-100 text-purple-600 font-semibold tracking-wide uppercase text-xs shadow-sm mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] font-semibold tracking-wide uppercase text-xs shadow-sm mb-4">
             Our Services
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             Comprehensive <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Healthcare Solutions</span>
+            {/* Gradient from Primary to Secondary */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#EF4444]">Healthcare Solutions</span>
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
             We provide a wide range of medical services to ensure your health is taken care of, from emergency needs to routine checkups.
@@ -92,33 +95,38 @@ export const ServicesSection: React.FC = () => {
   );
 };
 
+// --- Modern Card Component ---
 interface ServiceCardProps extends Service {
   index: number;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, index }) => (
   <div
-    className="group relative bg-white p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 animate-card-entry flex flex-col h-full"
-    style={{ animationDelay: `${index * 0.1}s` }} // Staggered Animation Logic
+    className="group relative bg-white p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-[#2563EB]/10 hover:-translate-y-2 transition-all duration-500 border border-gray-100 animate-card-entry flex flex-col h-full"
+    style={{ animationDelay: `${index * 0.1}s` }}
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+    {/* Decorative Gradient Blob on Hover (Using Primary Color) */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
+    {/* Icon Container */}
     <div className="relative w-14 h-14 mb-6">
-      {/* Background Circle */}
-      <div className="absolute inset-0 bg-purple-50 rounded-2xl group-hover:scale-110 group-hover:bg-purple-600 transition-all duration-300 ease-out" />
+      {/* Background Circle - Primary Color Light to Solid */}
+      <div className="absolute inset-0 bg-[#2563EB]/10 rounded-2xl group-hover:scale-110 group-hover:bg-[#2563EB] transition-all duration-300 ease-out" />
 
+      {/* Icon SVG */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <svg className="w-7 h-7 text-purple-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-7 h-7 text-[#2563EB] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} />
         </svg>
       </div>
     </div>
 
-    <h3 className="text-xl font-bold text-gray-900 mb-3 relative z-10 group-hover:text-purple-600 transition-colors duration-300">{title}</h3>
+    <h3 className="text-xl font-bold text-gray-900 mb-3 relative z-10 group-hover:text-[#2563EB] transition-colors duration-300">{title}</h3>
 
     <p className="text-gray-500 leading-relaxed text-sm mb-6 flex-grow relative z-10">{description}</p>
 
-    <div className="relative z-10 flex items-center text-purple-600 font-semibold text-sm group-hover:text-purple-700 cursor-pointer">
+    {/* 'Learn More' Link - Primary Color */}
+    <div className="relative z-10 flex items-center text-[#2563EB] font-semibold text-sm group-hover:underline cursor-pointer">
       <span className="mr-2">Learn more</span>
       <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

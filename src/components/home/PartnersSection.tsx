@@ -1,12 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Asumsi pakai React Router
+import { useNavigate } from "react-router-dom";
 
 // --- Types ---
 interface PartnerType {
   title: string;
   description: string;
   icon: string;
-  link: string; // Link ke halaman spesifik jika ada
+  link: string;
 }
 
 export const PartnersSection: React.FC = () => {
@@ -36,7 +36,9 @@ export const PartnersSection: React.FC = () => {
   return (
     <section className="relative py-24 px-6 bg-white overflow-hidden" id="partners">
       {/* --- Ambient Background --- */}
+      {/* Primary Blue Blob */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2563EB]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Secondary Red Blob */}
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#EF4444]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -58,12 +60,13 @@ export const PartnersSection: React.FC = () => {
           {partnerTypes.map((type, idx) => (
             <div
               key={idx}
-              onClick={() => navigate(type.link)} // Navigate to subpage
+              onClick={() => navigate(type.link)}
               className="group bg-white p-8 rounded-[2rem] border border-gray-100 shadow-lg shadow-gray-100 hover:shadow-xl hover:shadow-[#2563EB]/10 hover:-translate-y-2 transition-all duration-300 cursor-pointer relative overflow-hidden"
             >
-              {/* Hover Gradient Overlay */}
+              {/* Hover Gradient Overlay: Primary to Secondary */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2563EB] to-[#EF4444] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
+              {/* Icon Container */}
               <div className="w-14 h-14 bg-[#2563EB]/5 rounded-2xl flex items-center justify-center text-[#2563EB] mb-6 group-hover:bg-[#2563EB] group-hover:text-white transition-colors duration-300">
                 <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={type.icon} />
@@ -85,7 +88,7 @@ export const PartnersSection: React.FC = () => {
 
         {/* --- CTA BOX (Action Area) --- */}
         <div className="relative rounded-[2.5rem] overflow-hidden bg-gray-900 shadow-2xl">
-          {/* Background decoration */}
+          {/* Background decoration: Gradient from Primary to Secondary */}
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-[#2563EB] to-[#EF4444] opacity-20 blur-[80px] rounded-full pointer-events-none"></div>
 
           <div className="grid md:grid-cols-2 items-center relative z-10">
@@ -97,7 +100,7 @@ export const PartnersSection: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => navigate("#")}
-                  className="px-8 py-4 bg-[#2563EB] hover:bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1"
+                  className="px-8 py-4 bg-[#2563EB] hover:bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-[#2563EB]/30 transition-all transform hover:-translate-y-1"
                 >
                   Register as Vendor
                 </button>

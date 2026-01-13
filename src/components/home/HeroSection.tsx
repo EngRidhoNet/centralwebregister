@@ -5,21 +5,24 @@ import heroAppImage from "../../assets/img/home/mockup.png";
 export const HeroSection: React.FC = () => {
   return (
     <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-white">
-      {/* --- Ambient Background Effects --- */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-200/40 rounded-full blur-[100px] -translate-y-1/2 animate-pulse" />
-      <div className="absolute top-20 right-1/4 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-[80px] translate-x-1/3" />
+      {/* --- Ambient Background Effects (Updated Colors) --- */}
+      {/* Primary Blue Blob */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#2563EB]/10 rounded-full blur-[100px] -translate-y-1/2 animate-pulse" />
+      {/* Secondary Red Blob */}
+      <div className="absolute top-20 right-1/4 w-[400px] h-[400px] bg-[#EF4444]/10 rounded-full blur-[80px] translate-x-1/3" />
+
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
       <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         {/* --- LEFT COLUMN: Text Content --- */}
         <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
           <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-100 text-purple-600 text-sm font-medium mb-6 animate-fade-in-up opacity-0"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] text-sm font-medium mb-6 animate-fade-in-up opacity-0"
             style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB]"></span>
             </span>
             New standard for healthcare
           </div>
@@ -29,7 +32,8 @@ export const HeroSection: React.FC = () => {
             style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
           >
             Healthcare. <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 bg-300% animate-gradient">
+            {/* Gradient Text: Primary Blue -> Secondary Red -> Primary Blue */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] via-[#EF4444] to-[#2563EB] bg-300% animate-gradient">
               Anytime. Anywhere.
             </span>
           </h1>
@@ -46,7 +50,8 @@ export const HeroSection: React.FC = () => {
             style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
           >
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
+              {/* Button Glow: Primary to Secondary */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#2563EB] to-[#EF4444] rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
               <div className="relative">
                 <Button size="lg" icon>
                   Get Started Now
@@ -62,8 +67,8 @@ export const HeroSection: React.FC = () => {
           className="relative flex justify-center lg:justify-end animate-fade-in-up opacity-0 perspective-1000"
           style={{ animationDelay: "0.6s", animationFillMode: "forwards" }}
         >
-          {/* Decorative Back Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[600px] bg-gradient-to-tr from-purple-500/20 to-blue-500/20 blur-[80px] rounded-full pointer-events-none animate-pulse-slow" />
+          {/* Decorative Back Glow: Primary to Secondary */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[600px] bg-gradient-to-tr from-[#2563EB]/20 to-[#EF4444]/20 blur-[80px] rounded-full pointer-events-none animate-pulse-slow" />
 
           {/* 3D Phone Container Wrapper */}
           <div className="relative w-full max-w-[320px] animate-float-3d transform-style-3d">
@@ -86,8 +91,8 @@ export const HeroSection: React.FC = () => {
             <div className="absolute top-20 -right-8 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white/50 animate-float-delayed hidden md:block transform translate-z-20">
               <div className="flex items-center gap-2">
                 <span className="flex h-3 w-3 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-[#2563EB]"></span>
                 </span>
                 <span className="text-xs font-bold text-gray-800">App Preview</span>
               </div>
