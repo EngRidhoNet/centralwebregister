@@ -44,9 +44,6 @@ export const PartnersSection: React.FC = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* --- HEADER --- */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="font-bold tracking-wider uppercase text-xs px-3 py-1 rounded-full bg-[#2563EB]/10 text-[#2563EB] border border-[#2563EB]/20">
-            Ecosystem Growth
-          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-6 mb-6">
             Partner with <span className="text-[#2563EB]">Medicare</span>
           </h2>

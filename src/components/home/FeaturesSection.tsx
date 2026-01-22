@@ -37,9 +37,6 @@ export const FeaturesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* --- 2. Header Section with Gradient --- */}
         <div className="text-center mb-20">
-          <span className="inline-block py-1 px-3 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] font-semibold tracking-wide uppercase text-xs shadow-sm mb-4">
-            Why Choose Us
-          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             What Makes Medicare The
             <br />

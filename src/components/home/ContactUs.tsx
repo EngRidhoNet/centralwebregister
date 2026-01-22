@@ -66,9 +66,6 @@ export const ContactUsPage: React.FC = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10 animate-fade-in-up">
-          <span className="inline-block py-1 px-3 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-bold tracking-wide uppercase mb-4 border border-[#2563EB]/20">
-            Contact Support
-          </span>
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
             Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#EF4444]">Touch</span>
           </h1>
@@ -202,7 +199,7 @@ export const ContactUsPage: React.FC = () => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-semibold text-gray-700 ml-1">Phone Number</label>
+                        <label className="text-sm font-semibold text-gray-700 ml-1">phone Number</label>
                         <input
                           type="tel"
                           className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:border-[#2563EB] focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"

@@ -58,7 +58,6 @@ export const HeroSection: React.FC = () => {
                 </Button>
               </div>
             </div>
-            <button className="px-6 py-3 rounded-lg text-gray-600 font-semibold hover:bg-gray-50 transition-colors">Download App</button>
           </div>
         </div>
 
@@ -72,7 +71,6 @@ export const HeroSection: React.FC = () => {
 
           {/* 3D Phone Container Wrapper */}
           <div className="relative w-full max-w-[320px] animate-float-3d transform-style-3d">
-            {/* The Phone Image */}
             <div className="relative rounded-[2.5rem] bg-gray-900 shadow-2xl overflow-hidden border-[8px] border-gray-900 ring-1 ring-white/10 group transition-transform duration-500 hover:rotate-y-0 hover:rotate-x-0 transform rotate-y-[-12deg] rotate-x-[5deg]">
               {/* Image */}
               <img src={heroAppImage} alt="Medicare Mobile App Interface" className="w-full h-auto object-cover" />

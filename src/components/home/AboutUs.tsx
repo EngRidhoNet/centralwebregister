@@ -74,9 +74,6 @@ export const AboutUsPage: React.FC = () => {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10 animate-fade-in-up">
-          <span className="inline-block py-1 px-3 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-bold tracking-wide uppercase mb-6 border border-[#2563EB]/20">
-            About Us
-          </span>
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 leading-tight">
             Advancing Healthcare <br />
             with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#EF4444]">Compassion</span>

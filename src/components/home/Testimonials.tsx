@@ -43,9 +43,6 @@ export const Testimonials: React.FC = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* --- 2. Header Section --- */}
         <div className="text-center mb-20 max-w-3xl mx-auto">
-          <span className="inline-block py-1 px-3 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-4 tracking-wide uppercase">
-            Testimonials
-          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             Trusted by Healthcare <br />
             {/* Gradient Text: Primary to Secondary */}
