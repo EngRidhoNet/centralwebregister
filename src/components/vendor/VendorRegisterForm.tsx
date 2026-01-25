@@ -41,7 +41,7 @@ const VendorRegisterForm: React.FC<VendorRegisterFormProps> = ({ onSubmit }) => 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validation
     if (formData.password !== formData.confirmPassword) {
       showError("Passwords do not match");
@@ -66,34 +66,34 @@ const VendorRegisterForm: React.FC<VendorRegisterFormProps> = ({ onSubmit }) => 
   };
 
   return (
-    <div className="h-screen flex items-center justify-center px-4 bg-gradient-to-br from-[#E3F2FD] via-[#F5F5F5] to-[#FCE4EC] overflow-hidden">
-      <div className="w-full max-w-[1200px] h-[85vh] bg-white rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden">
-        <div className="flex h-full">
-          {/* Left Side - Illustration */}
-          <div className="w-1/2 px-6 py-8 flex flex-col items-center justify-center bg-white">
+    <div className="min-h-screen flex items-center justify-center px-4 py-6 sm:py-8 bg-gradient-to-br from-[#E3F2FD] via-[#F5F5F5] to-[#FCE4EC] overflow-auto">
+      <div className="w-full max-w-[1200px] min-h-[500px] md:h-auto lg:h-[85vh] bg-white rounded-[24px] md:rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden">
+        <div className="flex flex-col lg:flex-row h-full">
+          {/* Left Side - Illustration (hidden on mobile, visible on lg+) */}
+          <div className="hidden lg:flex lg:w-1/2 px-6 py-8 flex-col items-center justify-center bg-white">
             {/* Logo */}
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold text-center">
+            <div className="mb-6 xl:mb-8">
+              <h1 className="text-3xl xl:text-4xl font-bold text-center">
                 <span className="text-blue-600">Medi</span>
                 <span className="text-red-500">Care</span>
               </h1>
             </div>
 
             {/* Hospital Illustration */}
-            <div className="mb-8">
-              <div className="w-[300px] h-[300px] bg-gradient-to-br from-gray-50 to-white rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden">
+            <div className="mb-6 xl:mb-8">
+              <div className="w-[200px] h-[200px] xl:w-[300px] xl:h-[300px] bg-gradient-to-br from-gray-50 to-white rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden">
                 <img src={hospitalIcon} alt="Hospital" className="w-full h-full object-contain scale-90" />
               </div>
             </div>
 
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Vendor</h2>
+            <h2 className="text-3xl xl:text-4xl font-bold text-gray-900 mb-4 xl:mb-6">Vendor</h2>
 
             <button
               onClick={handleSelectRole}
               type="button"
-              className="text-blue-600 flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-base"
+              className="text-blue-600 flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-sm xl:text-base"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 xl:w-5 xl:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Select another role
@@ -101,11 +101,30 @@ const VendorRegisterForm: React.FC<VendorRegisterFormProps> = ({ onSubmit }) => 
           </div>
 
           {/* Right Side - Form */}
-          <div className="w-1/2 px-10 py-8 bg-white flex items-center overflow-y-auto">
+          <div className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-10 py-6 sm:py-8 bg-white flex items-center overflow-y-auto">
             <div className="w-full max-w-[450px] mx-auto">
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Register</h2>
-                <p className="text-gray-600 text-sm leading-relaxed">Please complete the following data</p>
+              {/* Mobile Header - Only visible on mobile */}
+              <div className="lg:hidden mb-6 text-center">
+                <h1 className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="text-blue-600">Medi</span>
+                  <span className="text-red-500">Care</span>
+                </h1>
+                <p className="text-gray-600 text-sm font-medium">Vendor Registration</p>
+                <button
+                  onClick={handleSelectRole}
+                  type="button"
+                  className="mt-3 text-blue-600 inline-flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-sm"
+                >
+                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Select another role
+                </button>
+              </div>
+
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Register</h2>
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">Please complete the following data</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">

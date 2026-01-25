@@ -66,38 +66,38 @@ const NurseOTPVerification: React.FC<NurseOTPVerificationProps> = ({
   };
 
   return (
-    <div className="h-screen flex items-center justify-center px-4 bg-gradient-to-br from-[#E3F2FD] via-[#F5F5F5] to-[#FCE4EC] overflow-hidden">
-      <div className="w-full max-w-[1200px] h-[85vh] bg-white rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden">
-        <div className="flex h-full">
-          {/* Left Side - Illustration */}
-          <div className="w-1/2 px-6 py-8 flex flex-col items-center justify-center bg-white">
+    <div className="min-h-screen flex items-center justify-center px-4 py-6 sm:py-8 bg-gradient-to-br from-[#E3F2FD] via-[#F5F5F5] to-[#FCE4EC] overflow-auto">
+      <div className="w-full max-w-[1200px] min-h-[400px] md:h-auto lg:h-[85vh] bg-white rounded-[24px] md:rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden">
+        <div className="flex flex-col lg:flex-row h-full">
+          {/* Left Side - Illustration (hidden on mobile, visible on lg+) */}
+          <div className="hidden lg:flex lg:w-1/2 px-6 py-8 flex-col items-center justify-center bg-white">
             {/* Logo */}
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold text-center">
+            <div className="mb-6 xl:mb-8">
+              <h1 className="text-3xl xl:text-4xl font-bold text-center">
                 <span className="text-blue-600">Medi</span>
                 <span className="text-red-500">Care</span>
               </h1>
             </div>
 
             {/* Nurse Illustration */}
-            <div className="mb-8">
-              <div className="w-[300px] h-[300px] bg-gradient-to-br from-pink-50 to-blue-50 rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden">
-                <img 
-                  src={nurseIcon} 
-                  alt="Nurse" 
+            <div className="mb-6 xl:mb-8">
+              <div className="w-[200px] h-[200px] xl:w-[300px] xl:h-[300px] bg-gradient-to-br from-pink-50 to-blue-50 rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden">
+                <img
+                  src={nurseIcon}
+                  alt="Nurse"
                   className="w-full h-full object-contain scale-90"
                 />
               </div>
             </div>
 
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Nurse</h2>
-            
-            <button 
+            <h2 className="text-3xl xl:text-4xl font-bold text-gray-900 mb-4 xl:mb-6">Nurse</h2>
+
+            <button
               onClick={handleSelectRole}
               type="button"
-              className="text-blue-600 flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-base"
+              className="text-blue-600 flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-sm xl:text-base"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 xl:w-5 xl:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Select another role
@@ -105,17 +105,36 @@ const NurseOTPVerification: React.FC<NurseOTPVerificationProps> = ({
           </div>
 
           {/* Right Side - OTP Form */}
-          <div className="w-1/2 px-10 py-8 bg-white flex items-center">
+          <div className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-10 py-6 sm:py-8 bg-white flex items-center">
             <div className="w-full max-w-[450px] mx-auto">
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">OTP Verification</h2>
-                <p className="text-gray-600 text-sm leading-relaxed">
+              {/* Mobile Header - Only visible on mobile */}
+              <div className="lg:hidden mb-6 text-center">
+                <h1 className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="text-blue-600">Medi</span>
+                  <span className="text-red-500">Care</span>
+                </h1>
+                <p className="text-gray-600 text-sm font-medium">Nurse Verification</p>
+                <button
+                  onClick={handleSelectRole}
+                  type="button"
+                  className="mt-3 text-blue-600 inline-flex items-center justify-center hover:text-blue-700 transition-colors font-medium text-sm"
+                >
+                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Select another role
+                </button>
+              </div>
+
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">OTP Verification</h2>
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
                   We will send you OTP Code to your email. Please enter the code correctly
                 </p>
               </div>
-              
+
               <form onSubmit={handleSubmit}>
-                <div className="flex gap-3 justify-center mb-6">
+                <div className="flex gap-2 sm:gap-3 justify-center mb-6">
                   {otp.map((digit, index) => (
                     <input
                       key={index}
@@ -125,7 +144,7 @@ const NurseOTPVerification: React.FC<NurseOTPVerificationProps> = ({
                       value={digit}
                       onChange={(e) => handleChange(index, e.target.value)}
                       onKeyDown={(e) => handleKeyDown(index, e)}
-                      className="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all"
+                      className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-center text-lg sm:text-xl font-bold border-2 border-gray-300 rounded-lg sm:rounded-xl focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all"
                     />
                   ))}
                 </div>
@@ -140,11 +159,10 @@ const NurseOTPVerification: React.FC<NurseOTPVerificationProps> = ({
                   type="button"
                   onClick={handleResend}
                   disabled={timer > 0}
-                  className={`w-full mb-4 py-3 rounded-xl font-semibold text-base transition-all ${
-                    timer > 0
+                  className={`w-full mb-4 py-3 rounded-xl font-semibold text-base transition-all ${timer > 0
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed border-2 border-gray-200'
                       : 'bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50'
-                  }`}
+                    }`}
                 >
                   Send Again
                 </button>
