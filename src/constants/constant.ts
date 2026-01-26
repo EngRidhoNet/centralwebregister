@@ -18,6 +18,7 @@ export const TERMS_AND_CONDITIONS_URL = "/terms";
 export const DOCTOR_TERMS_AND_CONDITIONS_URL = "/terms/doctor";
 export const VENDOR_TERMS_AND_CONDITIONS_URL = "/terms/vendor";
 export const NURSE_TERMS_AND_CONDITIONS_URL = "/terms/nurse";
+export const PRIVACY_POLICY_URL = "/policy";
 
 // External Login URLs (after successful registration)
 export const DOCTOR_REGISTRATION_SUCCESS_URL = "http://103.224.93.92:8001/login";

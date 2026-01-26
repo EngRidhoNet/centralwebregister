@@ -18,12 +18,14 @@ import {
   VENDOR_TERMS_AND_CONDITIONS_URL,
   ABOUT_US_URL,
   CONTACT_US_URL,
+  PRIVACY_POLICY_URL,
 } from "./constants/constant";
 import Home from "./pages/Home";
 
 import DoctorTermsAndConditions from "./components/terms/DoctorTermsAndConditions";
 import NurseTermsAndConditions from "./components/terms/NurseTermsAndConditions";
 import VendorTermsAndConditions from "./components/terms/VendorTermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { ToastProvider } from "./components/common/ToastContainer";
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
         <Route path={DOCTOR_TERMS_AND_CONDITIONS_URL} element={<DoctorTermsAndConditions />} />
         <Route path={NURSE_TERMS_AND_CONDITIONS_URL} element={<NurseTermsAndConditions />} />
         <Route path={VENDOR_TERMS_AND_CONDITIONS_URL} element={<VendorTermsAndConditions />} />
+        <Route path={PRIVACY_POLICY_URL} element={<PrivacyPolicy />} />
         <Route path="/registration-success" element={<RegistrationSuccess />} />
       </Routes>
     </ToastProvider>
