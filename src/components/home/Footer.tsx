@@ -1,7 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  PRIVACY_POLICY_URL,
+  TERMS_AND_CONDITIONS_URL,
+  ABOUT_US_URL,
+} from "../../constants/constant";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+
+  // Company links with proper routes
+  const companyLinks = [
+    { label: "About Us", href: ABOUT_US_URL },
+    { label: "Careers", href: "#" },
+    { label: "Privacy Policy", href: PRIVACY_POLICY_URL },
+    { label: "Terms of Service", href: TERMS_AND_CONDITIONS_URL },
+  ];
 
   return (
     <footer className="relative bg-gray-950 text-white pt-20 pb-10 overflow-hidden">
@@ -51,11 +65,17 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-semibold text-white mb-6">Company</h4>
             <ul className="space-y-4">
-              {["About Us", "Careers", "Privacy Policy", "Terms of Service"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-gray-400 hover:text-[#2563EB] transition-all duration-300 hover:translate-x-1 inline-block text-sm">
-                    {item}
-                  </a>
+              {companyLinks.map((item) => (
+                <li key={item.label}>
+                  {item.href.startsWith("#") ? (
+                    <a href={item.href} className="text-gray-400 hover:text-[#2563EB] transition-all duration-300 hover:translate-x-1 inline-block text-sm">
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link to={item.href} className="text-gray-400 hover:text-[#2563EB] transition-all duration-300 hover:translate-x-1 inline-block text-sm">
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -96,12 +116,12 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-800/50 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs md:text-sm text-center md:text-left">© {currentYear} Medicare Inc. All rights reserved.</p>
           <div className="flex space-x-6 text-xs md:text-sm text-gray-500">
-            <a href="#" className="hover:text-white transition-colors">
+            <Link to={PRIVACY_POLICY_URL} className="hover:text-white transition-colors">
               Privacy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link to={TERMS_AND_CONDITIONS_URL} className="hover:text-white transition-colors">
               Terms
-            </a>
+            </Link>
             <a href="#" className="hover:text-white transition-colors">
               Sitemap
             </a>
