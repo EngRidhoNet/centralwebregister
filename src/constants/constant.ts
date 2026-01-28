@@ -23,4 +23,4 @@ export const PRIVACY_POLICY_URL = "/policy";
 // External Login URLs (after successful registration)
 export const DOCTOR_REGISTRATION_SUCCESS_URL = "https://dms.medicarebackend.com/login";
 export const VENDOR_REGISTRATION_SUCCESS_URL = "https://vendor.medicarebackend.com/vendor/login";
-export const NURSE_REGISTRATION_SUCCESS_URL = "https://dev.medicarebackend.com/nurse/login"; // TODO: Update with actual nurse login URL when available
+export const NURSE_REGISTRATION_SUCCESS_URL = ""; // Nurse login is via mobile app only
