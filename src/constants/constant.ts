@@ -21,6 +21,6 @@ export const NURSE_TERMS_AND_CONDITIONS_URL = "/terms/nurse";
 export const PRIVACY_POLICY_URL = "/policy";
 
 // External Login URLs (after successful registration)
-export const DOCTOR_REGISTRATION_SUCCESS_URL = "http://103.224.93.92:8001/login";
+export const DOCTOR_REGISTRATION_SUCCESS_URL = "https://dms.medicarebackend.com/login";
 export const VENDOR_REGISTRATION_SUCCESS_URL = "https://vendor.medicarebackend.com/vendor/login";
 export const NURSE_REGISTRATION_SUCCESS_URL = "https://dev.medicarebackend.com/nurse/login"; // TODO: Update with actual nurse login URL when available
