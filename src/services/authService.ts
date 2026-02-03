@@ -133,26 +133,81 @@ class AuthService {
       const axiosError = error as AxiosError<ApiError>;
 
       if (axiosError.response) {
-        // Server responded with error
-        const errorMessage =
-          axiosError.response.data?.message || 'An error occurred';
-        const errors = axiosError.response.data?.errors;
+        const responseData = axiosError.response.data;
+        const statusCode = axiosError.response.status;
 
-        if (errors) {
-          // Format validation errors
-          const formattedErrors = Object.entries(errors)
-            .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
-            .join('\n');
-          return new Error(`${errorMessage}\n${formattedErrors}`);
+        // Try to get the main error message
+        const errorMessage = responseData?.message || '';
+        const errors = responseData?.errors;
+
+        // Handle validation errors (object format from Laravel)
+        if (errors && typeof errors === 'object') {
+          // Get the first validation error message
+          const errorEntries = Object.entries(errors);
+          if (errorEntries.length > 0) {
+            const [_field, messages] = errorEntries[0];
+            if (Array.isArray(messages) && messages.length > 0) {
+              // Return the first validation error message
+              return new Error(messages[0]);
+            } else if (typeof messages === 'string') {
+              return new Error(messages);
+            }
+          }
         }
 
-        return new Error(errorMessage);
+        // List of generic error messages that should be replaced with more specific ones
+        const genericMessages = [
+          'registration failed',
+          'verification failed',
+          'an error occurred',
+          'something went wrong',
+          'internal server error',
+          'bad request',
+          'conflict',
+        ];
+
+        // Check if the message is too generic
+        const isGenericMessage = genericMessages.some(generic =>
+          errorMessage.toLowerCase().includes(generic)
+        );
+
+        // If we have a specific error message, use it
+        if (errorMessage && !isGenericMessage) {
+          return new Error(errorMessage);
+        }
+
+        // Fallback based on status code (for generic messages or no message)
+        switch (statusCode) {
+          case 400:
+            return new Error('Invalid request. Please check your input.');
+          case 401:
+            return new Error('Authentication failed. Please login again.');
+          case 403:
+            return new Error('You do not have permission to perform this action.');
+          case 404:
+            return new Error('The requested resource was not found.');
+          case 409:
+            return new Error('This email or name is already registered. Please use different credentials.');
+          case 422:
+            return new Error('Validation failed. Please check your input.');
+          case 429:
+            return new Error('Too many requests. Please wait a moment and try again.');
+          case 500:
+            return new Error('Server error. Please try again later.');
+          default:
+            return new Error('An error occurred. Please try again.');
+        }
       } else if (axiosError.request) {
         // Network error
         return new Error(
           'Network error. Please check your internet connection.'
         );
       }
+    }
+
+    // Handle Error instance
+    if (error instanceof Error) {
+      return error;
     }
 
     return new Error('An unexpected error occurred. Please try again.');

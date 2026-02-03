@@ -18,6 +18,22 @@ const ERROR_MESSAGES: Record<string, string> = {
   'name.unique': 'This name is already taken. Please choose a different name',
   'required_field': 'This field is required',
 
+  // Laravel validation patterns (common)
+  'The email has already been taken.': 'This email is already registered. Please use a different email or login',
+  'The name has already been taken.': 'This name is already taken. Please choose a different name',
+  'The phone number has already been taken.': 'This phone number is already registered',
+  'The password must be at least 8 characters.': 'Password must be at least 8 characters long',
+  'The password confirmation does not match.': 'Passwords do not match. Please check and try again',
+  'The email must be a valid email address.': 'Please enter a valid email address',
+  'The email field is required.': 'Email is required',
+  'The password field is required.': 'Password is required',
+  'The name field is required.': 'Name is required',
+  'The phone number field is required.': 'Phone number is required',
+  'The otp field is required.': 'OTP code is required',
+  'The provided credentials are incorrect.': 'Invalid email or password',
+  'The provided OTP is invalid.': 'Invalid OTP code. Please check and try again',
+  'The OTP has expired.': 'OTP code has expired. Please request a new one',
+
   // Network errors
   'network_error': 'Network error. Please check your internet connection',
   'timeout': 'Request timeout. Please try again',
@@ -30,6 +46,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   'otp_expired': 'OTP code has expired. Please request a new one',
   'otp.invalid': 'Invalid OTP code. Please check and try again',
   'otp.expired': 'OTP code has expired. Please request a new one',
+  'Unauthenticated.': 'Your session has expired. Please login again',
 
   // Registration errors
   'registration_failed': 'Registration failed. Please try again',
@@ -48,12 +65,36 @@ const ERROR_MESSAGES: Record<string, string> = {
 export const getErrorMessage = (error: any): string => {
   // If error is already a string
   if (typeof error === 'string') {
-    return ERROR_MESSAGES[error] || error;
+    // Check if it's a known error code
+    if (ERROR_MESSAGES[error]) {
+      return ERROR_MESSAGES[error];
+    }
+    // Check for partial matches in known error messages
+    for (const [key, message] of Object.entries(ERROR_MESSAGES)) {
+      if (error.toLowerCase().includes(key.toLowerCase().replace(/_/g, ' '))) {
+        return message;
+      }
+    }
+    return error;
   }
 
   // Handle axios/fetch error response
   if (error?.response?.data) {
     const { message, errors, error: errorCode } = error.response.data;
+
+    // Handle validation errors (object format from Laravel: { field: ["error1", "error2"] })
+    if (errors && typeof errors === 'object' && !Array.isArray(errors)) {
+      const errorEntries = Object.entries(errors);
+      if (errorEntries.length > 0) {
+        const [_field, messages] = errorEntries[0];
+        if (Array.isArray(messages) && messages.length > 0) {
+          const errorMsg = messages[0];
+          return ERROR_MESSAGES[errorMsg] || errorMsg;
+        } else if (typeof messages === 'string') {
+          return ERROR_MESSAGES[messages] || messages;
+        }
+      }
+    }
 
     // Handle validation errors (array of errors)
     if (errors && Array.isArray(errors)) {
@@ -67,12 +108,30 @@ export const getErrorMessage = (error: any): string => {
 
     // Handle single error message
     if (message) {
-      return ERROR_MESSAGES[message] || message;
+      // Check for known error messages
+      for (const [key, friendlyMessage] of Object.entries(ERROR_MESSAGES)) {
+        if (message.toLowerCase().includes(key.toLowerCase().replace(/_/g, ' '))) {
+          return friendlyMessage;
+        }
+      }
+      return message;
     }
 
     if (errorCode) {
       return ERROR_MESSAGES[errorCode] || errorCode;
     }
+  }
+
+  // Handle Error instance
+  if (error instanceof Error) {
+    const errorMsg = error.message;
+    // Check for known error messages
+    for (const [key, friendlyMessage] of Object.entries(ERROR_MESSAGES)) {
+      if (errorMsg.toLowerCase().includes(key.toLowerCase().replace(/_/g, ' '))) {
+        return friendlyMessage;
+      }
+    }
+    return errorMsg;
   }
 
   // Handle network errors
