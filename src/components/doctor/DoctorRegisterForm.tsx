@@ -4,6 +4,7 @@ import doctorIcon from "../../assets/img/icon-doctor.svg";
 import { DOCTOR_TERMS_AND_CONDITIONS_URL, REGISTER_URL } from "../../constants/constant";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../common/ToastContainer";
+import PhoneInput, { formatPhoneForAPI } from "../common/PhoneInput";
 
 // Eye icons for password visibility toggle
 const EyeIcon = () => (
@@ -39,19 +40,16 @@ const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    if (name === "phone") {
-      const sanitizedValue = value.replace(/[^0-9]/g, "");
-
-      setFormData((prev) => ({
-        ...prev,
-        phone: sanitizedValue,
-      }));
-      return;
-    }
-
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      phone: value,
     }));
   };
 
@@ -74,7 +72,13 @@ const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => 
       return;
     }
 
-    onSubmit(formData);
+    // Format phone number for API (remove + prefix)
+    const submitData = {
+      ...formData,
+      phone: formatPhoneForAPI(formData.phone),
+    };
+
+    onSubmit(submitData);
   };
 
   const handleSelectRole = () => {
@@ -167,14 +171,11 @@ const DoctorRegisterForm: React.FC<DoctorRegisterFormProps> = ({ onSubmit }) => 
                   <label className="block text-xs font-semibold text-gray-700 mb-1.5">
                     Phone Number <span className="text-red-500">*</span>
                   </label>
-                  <input
-                    type="tel"
-                    name="phone"
+                  <PhoneInput
                     value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="eg: +60 10-1234568"
+                    onChange={handlePhoneChange}
+                    placeholder="Enter phone number"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none text-sm"
                   />
                 </div>
 
